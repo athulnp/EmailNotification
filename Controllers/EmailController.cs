@@ -13,14 +13,14 @@ public class EmailController : ControllerBase
     }
 
     [HttpPost("send-email")]
-    public async Task<IActionResult> SendEmail([FromBody] EmailRequest request)
+    public async Task<IActionResult> SendEmail([FromBody] EmailRequest request, CancellationToken cancellationToken = default)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
         try
         {
-            await _emailService.SendEmailAsync(request);
+            await _emailService.SendEmailAsync(request, cancellationToken);
             return Ok(new { message = "Email sent successfully" });
         }
         catch (Exception ex)

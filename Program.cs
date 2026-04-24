@@ -7,7 +7,6 @@ builder.Services.Configure<SmtpSettings>(
 
 // Add services to the container.
 builder.Services.AddScoped<IEmailService, EmailService>();
-
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
