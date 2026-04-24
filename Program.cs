@@ -22,11 +22,13 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 // ✅ Enable Swagger middleware
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment() || builder.Configuration.GetValue<bool>("EnableSwagger"))
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
