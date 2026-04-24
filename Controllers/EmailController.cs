@@ -1,4 +1,5 @@
 using EmailNotification.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -27,5 +28,13 @@ public class EmailController : ControllerBase
         {
             return StatusCode(500, new { error = ex.Message });
         }
+    }
+
+    [HttpGet("User")]
+    [Authorize]
+    public async Task<IActionResult> SendEmailWithAuth()
+    {
+       string userId = User.Identity?.Name ?? "Unknown";
+        return Ok(new { message = $"Authenticated user: {userId}" });
     }
 }
